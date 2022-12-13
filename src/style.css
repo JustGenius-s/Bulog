@@ -1,4 +1,7 @@
 /* css reset */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /*! 只应该重置一小部分必须的css */
 html, body {
   width: 100%;
