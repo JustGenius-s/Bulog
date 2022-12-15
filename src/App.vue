@@ -4,7 +4,6 @@ import Headers from './components/Headers.vue';
 
 <template>
   <div id="root">
-    <headers></headers>
     <router-view></router-view>
   </div>
 </template>
@@ -12,7 +11,6 @@ import Headers from './components/Headers.vue';
 <style scoped>
 #root {
   width: 100%;
-  height: 100%;
   margin: 0;
   padding: 0;
   display: flex;
