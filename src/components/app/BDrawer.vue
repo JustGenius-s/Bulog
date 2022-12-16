@@ -3,10 +3,11 @@ import { computed } from 'vue';
 import FadeAnim from '../anims/FadeAnim.vue';
 
 interface Props {
+    direction: 'left' | 'right';
     initState: Boolean | null;
 }
 
-const { initState } = defineProps<Props>();
+const { initState, direction } = defineProps<Props>();
 
 let EXPAN_ON_DESKTOP = false;
 let selfState = $ref(true);
@@ -16,15 +17,27 @@ const state = computed(() => {
     return (selfState && initState) || (!selfState && !initState);
 });
 
+const dire = computed(() => {
+    switch (direction) {
+        case 'left':
+            return ['left-0', 'top-0', 'border-r-2'];
+        case 'right':
+            return ['right-0', 'top-0', 'border-l-2'];
+        default:
+            return ['left-0', 'top-0', 'border-r-2'];
+    }
+});
+
 function clickOutside() {
     selfState = !selfState;
 }
 </script>
 
 <template>
-    <fade-anim>
+    <fade-anim :direction="direction">
         <div
-            class="w-3/4 max-w-sm h-screen fixed flex flex-col bg-white border-r-2 z-20"
+            class="w-3/4 max-w-sm h-screen fixed flex flex-col bg-white z-20"
+            :class="dire"
             v-show="state"
         >
             <slot></slot>

@@ -5,7 +5,7 @@ const count = $ref(false);
 </script>
 
 <template>
-    <b-drawer :init-state="count"></b-drawer>
+    <b-drawer :init-state="count" direction="left"></b-drawer>
     <button class="uppercase" @click="() => (count = !count)">switch</button>
 </template>
 
