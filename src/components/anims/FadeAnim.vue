@@ -29,7 +29,7 @@ const outAnim = computed(() => {
         case 'right':
             return 'slideOutRight';
         case 'top':
-            return 'slideOutup';
+            return 'slideOutUp';
         case 'bottom':
             return 'slideOutDown';
         default:

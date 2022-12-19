@@ -9,7 +9,7 @@ interface Props {
 
 const { initState, direction } = defineProps<Props>();
 
-let EXPAN_ON_DESKTOP = false;
+let EXPAND_ON_DESKTOP = false;
 let selfState = $ref(true);
 
 const state = computed(() => {
@@ -36,10 +36,9 @@ function clickOutside() {
 <template>
     <fade-anim :direction="direction">
         <div
-            class="w-3/4 max-w-sm h-screen fixed flex flex-col bg-white z-20"
+            class="w-3/4 max-w-xs h-screen fixed flex flex-col bg-white z-20"
             :class="dire"
-            v-show="state"
-        >
+            v-show="state">
             <slot></slot>
         </div>
     </fade-anim>
