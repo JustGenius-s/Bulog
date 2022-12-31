@@ -47,12 +47,12 @@ const outAnim = computed(() => {
 <style>
 .fade-enter-active {
     animation: v-bind(inAnim);
-    animation-duration: 0.3s;
+    animation-duration: 0.2s;
     animation-timing-function: ease-in;
 }
 .fade-leave-active {
     animation: v-bind(outAnim);
-    animation-duration: 0.3s;
+    animation-duration: 0.2s;
     animation-timing-function: ease-out;
 }
 </style>
