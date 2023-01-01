@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed } from '@vue/reactivity';
-
 interface Props {
     variant?: 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text';
     icon?: boolean;
@@ -11,7 +9,7 @@ const { variant, icon } = defineProps<Props>();
 const type = $computed(() => {
     switch (variant) {
         case 'elevated':
-            return ['rounded-full', 'bg-orange-50', 'shadow-l'];
+            return ['rounded-full', 'bg-orange-50', 'shadow-0.5'];
         case 'filled':
             return ['rounded-full', 'bg-orange-200'];
         case 'tonal':
@@ -21,7 +19,7 @@ const type = $computed(() => {
         case 'text':
             return ['bg-transparent'];
         default:
-            return ['rounded-full', 'bg-orange-50', 'shadow-l'];
+            return ['rounded-full', 'bg-orange-50', 'shadow-0.5'];
     }
 });
 
@@ -49,9 +47,3 @@ const iconSize = $computed(() => {
         </div>
     </div>
 </template>
-
-<style scoped>
-.shadow-l {
-    box-shadow: 0px 0.5px 1.5px 0px #4e4e4f;
-}
-</style>
