@@ -2,9 +2,27 @@
 import BDrawer from './app/BDrawer.vue';
 import BButton from './app/BButton.vue';
 import BFab from './app/BFab.vue';
+import { customThemeFromColor, applyCustomTheme } from './theme/theme';
+
+const theme = customThemeFromColor({
+    primary: '#006b62',
+    secondary: '#fcb170',
+    tertiary: '#928cb2',
+}, [
+    {
+        value: '#77baff',
+        name: 'coff',
+        blend: false
+    }
+])
+
+applyCustomTheme(theme, {
+    dark: false,
+});
+
+console.log(theme);
 
 const count = $ref(false);
-const icon = true;
 </script>
 
 <template>
@@ -14,4 +32,6 @@ const icon = true;
     <button class="uppercase" @click="() => (count = !count)">switch</button>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>

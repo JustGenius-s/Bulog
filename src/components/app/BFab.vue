@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { def } from '@vue/shared';
-
 interface Props {
     variant?: 'small' | 'large';
 }
@@ -38,4 +36,6 @@ const iconSize = $computed(() => {
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>
