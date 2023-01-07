@@ -3,6 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/** Custom Style */
+
+@layer utilities {
+  .elevation {
+    box-shadow: '0px 0.5px 1.5px 0px #9e9e9f',
+  }
+}
+
 /*! 只应该重置一小部分必须的css */
 html, body {
   width: 100%;

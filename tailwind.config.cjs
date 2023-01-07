@@ -12,11 +12,7 @@ module.exports = {
       boxShadow: {
         '0.5': '0px 0.5px 1.5px 0px #9e9e9f',
       },
-      lineHeight: {
-        '16': '3.5rem',
-        '24': '6rem',
-      },
-      backgroundColor: {
+      colors: {
         'primary': 'var(--md-sys-color-primary)',
         'on-primary': 'var(--md-sys-color-on-primary)',
         'primary-container': 'var(--md-sys-color-primary-container)',
@@ -46,6 +42,15 @@ module.exports = {
         'inverse-surface': 'var(--md-sys-color-inverse-surface)',
         'inverse-on-surface': 'var(--md-sys-color-inverse-on-surface)',
         'inverse-primary': 'var(--md-sys-color-inverse-primary)',
+      },
+      lineHeight: {
+        '16': '3.5rem',
+        '24': '6rem',
+      },
+      opacity: {
+        '8': '.08',
+        '12': '.12',
+        '16': '.16',
       }
     },
   },

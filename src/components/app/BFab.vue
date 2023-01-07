@@ -35,7 +35,3 @@ const iconSize = $computed(() => {
         </div>
     </div>
 </template>
-
-<style scoped>
-
-</style>
