@@ -4,11 +4,17 @@ import StateLayer from './StateLayer.vue';
 interface Props {
     variant?: 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text';
     icon?: boolean;
+    disabled?: boolean;
 }
 
-const { variant, icon } = defineProps<Props>();
+const { variant, icon, disabled } = defineProps<Props>();
+
+const component = $computed(() => {
+    if (disabled) return ['cursor-not-allowed', 'pointer-events-none'];
+});
 
 const container = $computed(() => {
+    if (disabled) return ['bg-on-surface', 'opacity-12'];
     switch (variant) {
         case 'elevated':
             return 'bg-surface';
@@ -26,6 +32,7 @@ const container = $computed(() => {
 });
 
 const content = $computed(() => {
+    if (disabled) return ['text-on-surface', 'opacity-38'];
     switch (variant) {
         case 'elevated':
             return 'text-primary';
@@ -77,7 +84,9 @@ const outline = $computed(() => {
     }
 });
 
-const style = [container, content, elevation, outline];
+const styleOfComponent = [component, elevation, outline];
+const styleOfContainer = [container];
+const styleOfContent = [content];
 
 const iconSize = $computed(() => {
     switch (icon) {
@@ -93,19 +102,30 @@ const iconSize = $computed(() => {
 </script>
 
 <template>
-    <div class="container" :class="style" id="container">
-        <state-layer :content-color="contentColor" rounded="rounded-full"></state-layer>
-        <div class="ml-4 text-center" :class="iconSize">
-            <slot name="icon"></slot>
+    <div class="component" :class="styleOfComponent">
+        <state-layer v-if="!disabled" :content-color="contentColor"></state-layer>
+        <div class="content">
+            <div class="ml-4 text-center" :class="iconSize">
+                <slot name="icon"></slot>
+            </div>
+            <div class="ml-2 mr-6" :class="styleOfContent">
+                <slot></slot>
+            </div>
         </div>
-        <div class="ml-2 mr-6">
-            <slot></slot>
-        </div>
+        <div class="container z-n-1" :class="styleOfContainer"></div>
     </div>
 </template>
 
 <style scoped>
+.component {
+    @apply relative h-10 w-fit rounded-full flex flex-row overflow-hidden transition duration-150;
+}
+
 .container {
-    @apply capitalize font-medium h-10 w-fit leading-10 rounded-full relative flex flex-row transition duration-150;
+    @apply absolute w-full h-full top-0 left-0;
+}
+
+.content {
+    @apply capitalize font-medium leading-10 flex flex-row;
 }
 </style>
