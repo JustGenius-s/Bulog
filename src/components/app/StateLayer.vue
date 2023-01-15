@@ -10,11 +10,5 @@ const style = [contentColor]
 </script>
 
 <template>
-    <div class="state" :class="style"></div>
+    <div class="w-full h-full opacity-0 absolute top-0 left-0 hover:hover-state-layer focus:focus-state-layer active:pressed-state-layer" :class="style"></div>
 </template>
-
-<style scoped>
-.state {
-    @apply w-full h-full opacity-0 absolute top-0 left-0 hover:opacity-8 focus:opacity-12 active:opacity-12;
-}
-</style>

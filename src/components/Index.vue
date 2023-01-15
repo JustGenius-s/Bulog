@@ -31,7 +31,7 @@ function logMe() {
 
 <template>
     <b-drawer :init-state="count" direction="left"></b-drawer>
-    <b-button variant="tonal" class="my-5 mx-5"> button </b-button>
+    <b-button variant="elevated" class="my-5 mx-5"> button </b-button>
     <b-fab class="my-5 mx-5">😄</b-fab>
     <button class="uppercase" @click="() => (count = !count)">switch</button>
 </template>

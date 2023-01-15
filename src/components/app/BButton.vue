@@ -14,7 +14,7 @@ const component = $computed(() => {
 });
 
 const container = $computed(() => {
-    if (disabled) return ['bg-on-surface', 'opacity-12'];
+    if (disabled) return ['bg-on-surface', 'disabled-state-container'];
     switch (variant) {
         case 'elevated':
             return 'bg-surface';
@@ -32,7 +32,7 @@ const container = $computed(() => {
 });
 
 const content = $computed(() => {
-    if (disabled) return ['text-on-surface', 'opacity-38'];
+    if (disabled) return ['text-on-surface', 'disabled-state-content'];
     switch (variant) {
         case 'elevated':
             return 'text-primary';
@@ -67,11 +67,12 @@ const contentColor = $computed(() => {
 });
 
 const elevation = $computed(() => {
+    if (disabled) return 'elevation-0';
     switch (variant) {
         case 'elevated':
-            return 'shadow-0.5';
+            return ['elevation-1', 'hover:elevation-2', 'active:elevation-1'];
         default:
-            return '';
+            return 'elevation-0';
     }
 });
 
@@ -87,33 +88,30 @@ const outline = $computed(() => {
 const styleOfComponent = [component, elevation, outline];
 const styleOfContainer = [container];
 const styleOfContent = [content];
-
-const iconSize = $computed(() => {
+const styleOfIcon = $computed(() => {
     switch (icon) {
         case false:
-            return ['w-0'];
+            return ['w-0', content];
         case true:
-            return ['w-4'];
+            return ['w-4', content];
         default:
-            return ['w-0'];
+            return ['w-0', content];
     }
 });
 
 </script>
 
 <template>
-    <div class="component" :class="styleOfComponent">
+    <button class="component" :class="styleOfComponent">
         <state-layer v-if="!disabled" :content-color="contentColor"></state-layer>
-        <div class="content">
-            <div class="ml-4 text-center" :class="iconSize">
-                <slot name="icon"></slot>
-            </div>
-            <div class="ml-2 mr-6" :class="styleOfContent">
-                <slot></slot>
-            </div>
-        </div>
+        <i class="icon" :class="styleOfIcon">
+            <slot name="icon"></slot>
+        </i>
+        <label class="content" :class="styleOfContent">
+            <slot></slot>
+        </label>
         <div class="container z-n-1" :class="styleOfContainer"></div>
-    </div>
+    </button>
 </template>
 
 <style scoped>
@@ -126,6 +124,9 @@ const iconSize = $computed(() => {
 }
 
 .content {
-    @apply capitalize font-medium leading-10 flex flex-row;
+    @apply capitalize ml-2 mr-6 font-medium leading-10;
+}
+.icon {
+    @apply ml-4 text-center font-medium leading-10;
 }
 </style>
