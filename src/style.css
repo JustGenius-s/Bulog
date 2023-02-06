@@ -353,3 +353,12 @@ a {
   color: #000;
   text-decoration: none;
 }
+
+/* 组件宿主样式 */
+:host(:is(state-layer)) {
+  @apply w-full h-full absolute top-0 left-0 block;
+}
+
+:host(:is(b-button)) {
+  @apply block w-fit rounded-full;
+}

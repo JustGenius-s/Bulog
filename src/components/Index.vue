@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import BDrawer from './app/BDrawer.vue';
-import BButton from './app/BButton.vue';
-import BFab from './app/BFab.vue';
+import { register } from './app/index';
 import { customThemeFromColor, applyCustomTheme } from './theme/theme';
 
 const theme = customThemeFromColor({
@@ -21,19 +19,12 @@ applyCustomTheme(theme, {
 });
 
 console.log(theme);
-
-const count = $ref(false);
-
-function logMe() {
-    console.log('This is Me!');
-}
+register();
 </script>
 
 <template>
-    <b-drawer :init-state="count" direction="left"></b-drawer>
-    <b-button variant="elevated" class="my-5 mx-5"> button </b-button>
-    <b-fab class="my-5 mx-5">😄</b-fab>
-    <button class="uppercase" @click="() => (count = !count)">switch</button>
+    <b-button class="my-5 mx-5" icon> button </b-button>
+    <button variant="hello"></button>
 </template>
 
 <style scoped>
