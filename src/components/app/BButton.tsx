@@ -25,22 +25,30 @@ interface BButtonVarStyle {
 }
 
 export class BButton extends HTMLElement {
-    variant: Variant | null;
-    icon: Boolean;
-    disabled: Boolean;
-    button: HTMLButtonElement | null;
     varStyle: BButtonVarStyle;
 
     static get observedAttributes() {
         return ['variant', 'disabled', 'icon'];
     }
 
+    get variant() {
+        return this.getAttribute('variant') as Variant;
+    }
+
+    get icon() {
+        return Boolean(this.getAttribute('icon'));
+    }
+
+    get disabled() {
+        return Boolean(this.getAttribute('disabled'));
+    }
+
+    get button() {
+        return this.shadowRoot?.querySelector('button');
+    }
+
     constructor() {
         super();
-        this.variant = null;
-        this.icon = false;
-        this.disabled = false;
-        this.button = null;
         this.varStyle = {
             button: new ComplexClass(
                 ['h-10 w-fit flex flex-row rounded-full relative overflow-hidden transition duration-150'],
@@ -74,11 +82,6 @@ export class BButton extends HTMLElement {
         // Can use child dom and attr in this lifecycle.
 
         let shadow = this.shadowRoot!!;
-        // init member variable.
-        this.variant = this.getAttribute('variant') as Variant;
-        this.icon = Boolean(this.getAttribute('icon'));
-        this.disabled = Boolean(this.getAttribute('disabled'));
-        this.button = shadow.querySelector('button');
         // Get the symbol link of child.
         let button = shadow.querySelector('button');
         let icon = shadow.querySelector('i');
@@ -111,7 +114,6 @@ export class BButton extends HTMLElement {
         switch (name) {
             case 'variant':
             case 'icon':
-                this.icon = Boolean(this.getAttribute('icon'));
                 this.varStyle.icon.ext = [this.__setIconSize()];
                 icon!!.className = this.varStyle['icon'].value;
         }
