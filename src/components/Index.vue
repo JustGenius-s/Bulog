@@ -23,7 +23,10 @@ register();
 </script>
 
 <template>
-    <b-button class="my-5 mx-5" icon> button </b-button>
+    <b-button class="my-5 mx-5" icon variant="elevated">
+            <p slot="icon">icon</p>
+        button
+    </b-button>
     <button variant="hello"></button>
 </template>
 

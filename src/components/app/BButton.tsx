@@ -35,12 +35,24 @@ export class BButton extends HTMLElement {
         return this.getAttribute('variant') as Variant;
     }
 
+    set variant(value: string) {
+        this.setAttribute('variant',value);
+    }
+
     get icon() {
         return Boolean(this.getAttribute('icon'));
     }
 
+    set icon(value: boolean) {
+        this.setAttribute('icon', String(value));
+    }
+
     get disabled() {
         return Boolean(this.getAttribute('disabled'));
+    }
+
+    set disabled(value: boolean) {
+        this.setAttribute('icon', String(value));
     }
 
     get button() {
@@ -54,7 +66,7 @@ export class BButton extends HTMLElement {
                 ['h-10 w-fit flex flex-row rounded-full relative overflow-hidden transition duration-150'],
                 []
             ),
-            icon: new ComplexClass(['ml-4 text-center font-medium leading-10'], []),
+            icon: new ComplexClass(['ml-4 text-center font-medium leading-10 overflow-hidden'], []),
             content: new ComplexClass(['capitalize ml-2 mr-6 font-medium leading-10'], []),
             container: new ComplexClass(['absolute w-full h-full top-0 left-0 z-n-1'], []),
         };
