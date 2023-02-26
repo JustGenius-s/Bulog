@@ -1,5 +1,5 @@
-@import url(shape.css);
-@import url(state.css);
-@import url(motion.css);
-@import url(elevation.css);
-@import url(typography.css);
+@import 'shape.css';
+@import 'state.css';
+@import 'motion.css';
+@import 'elevation.css';
+@import 'typography.css';
