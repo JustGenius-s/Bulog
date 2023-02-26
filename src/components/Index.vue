@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { register } from './app/index';
 import { customThemeFromColor, applyCustomTheme } from './theme/theme';
+
+const variant = ref('');
 
 const theme = customThemeFromColor({
     primary: '#006b62',
@@ -23,7 +26,12 @@ register();
 </script>
 
 <template>
-    <b-button class="my-5 mx-5" icon variant="elevated">
+    <select v-model="variant">
+        <option value="elevated">default</option>
+        <option value="outlined">outlined</option>
+        <option value="text">text</option>
+    </select>
+    <b-button class="my-5 mx-5" icon :variant="variant">
             <p slot="icon">icon</p>
         button
     </b-button>

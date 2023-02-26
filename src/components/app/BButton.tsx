@@ -1,4 +1,6 @@
-import { render, VNode } from 'vue';
+/** @format */
+
+import {render, VNode} from 'vue';
 import Style from '../../style.css?url';
 
 type Variant = 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text';
@@ -36,7 +38,7 @@ export class BButton extends HTMLElement {
     }
 
     set variant(value: string) {
-        this.setAttribute('variant',value);
+        this.setAttribute('variant', value);
     }
 
     get icon() {
@@ -64,20 +66,22 @@ export class BButton extends HTMLElement {
         this.varStyle = {
             button: new ComplexClass(
                 ['h-10 w-fit flex flex-row rounded-full relative overflow-hidden transition duration-150'],
-                []
+                [],
             ),
             icon: new ComplexClass(['ml-4 text-center font-medium leading-10 overflow-hidden'], []),
             content: new ComplexClass(['capitalize ml-2 mr-6 font-medium leading-10'], []),
             container: new ComplexClass(['absolute w-full h-full top-0 left-0 z-n-1'], []),
         };
 
-        let contentColor = this.__setContentColor();
+        let contentColor = this.contentColor;
         let template = (
             <button>
-                <link rel="stylesheet" href={Style}></link>
+                <link
+                    rel='stylesheet'
+                    href={Style}></link>
                 <state-layer content-color={contentColor}></state-layer>
                 <i>
-                    <slot name="icon"></slot>
+                    <slot name='icon'></slot>
                 </i>
                 <label>
                     <slot></slot>
@@ -86,30 +90,14 @@ export class BButton extends HTMLElement {
             </button>
         ) as VNode;
         // render
-        this.attachShadow({ mode: 'open' });
+        this.attachShadow({mode: 'open'});
         render(template, this.shadowRoot!!);
     }
 
     connectedCallback() {
         // Can use child dom and attr in this lifecycle.
 
-        let shadow = this.shadowRoot!!;
-        // Get the symbol link of child.
-        let button = shadow.querySelector('button');
-        let icon = shadow.querySelector('i');
-        let content = shadow.querySelector('label');
-        let container = shadow.querySelector('div');
-        // Compute style
-        this.varStyle.button.ext = [this.__setState(), this.__setElevation(), this.__setOutline()];
-        this.varStyle.icon.ext = [this.__setIconSize()];
-        this.varStyle.content.ext = [this.__setContent()];
-        this.varStyle.container.ext = [this.__setContainer()];
-        // Set style
-        button!!.className = this.varStyle['button'].value;
-        icon!!.className = this.varStyle['icon'].value;
-        content!!.className = this.varStyle['content'].value;
-        container!!.className = this.varStyle['container'].value;
-        // Render
+        this.updateStyle();
     }
 
     attributeChangedCallback(name: string, oldV: string, newV: string) {
@@ -117,21 +105,29 @@ export class BButton extends HTMLElement {
         // Will be called before connected.
 
         // Update style when attr changed.
+        this.updateStyle();
+    }
+
+    updateStyle() {
         let shadow = this.shadowRoot!!;
+        // Get the symbol link of child.
         let button = shadow.querySelector('button');
         let icon = shadow.querySelector('i');
         let content = shadow.querySelector('label');
         let container = shadow.querySelector('div');
-        console.log(name, `${oldV} -> ${newV}`);
-        switch (name) {
-            case 'variant':
-            case 'icon':
-                this.varStyle.icon.ext = [this.__setIconSize()];
-                icon!!.className = this.varStyle['icon'].value;
-        }
+        // Compute style
+        this.varStyle.button.ext = [this.state, this.elevation, this.outline];
+        this.varStyle.icon.ext = [this.iconSize];
+        this.varStyle.content.ext = [this.content];
+        this.varStyle.container.ext = [this.container];
+        // Set style
+        button!!.className = this.varStyle['button'].value;
+        icon!!.className = this.varStyle['icon'].value;
+        content!!.className = this.varStyle['content'].value;
+        container!!.className = this.varStyle['container'].value;
     }
 
-    __setContentColor() {
+    get contentColor() {
         switch (this.variant) {
             case 'elevated':
                 return 'bg-primary';
@@ -148,7 +144,7 @@ export class BButton extends HTMLElement {
         }
     }
 
-    __setIconSize() {
+    get iconSize() {
         switch (this.icon) {
             case false:
                 return 'w-0';
@@ -159,12 +155,12 @@ export class BButton extends HTMLElement {
         }
     }
 
-    __setState() {
+    get state() {
         if (this.disabled) return 'cursor-not-allowed pointer-events-none';
         return '';
     }
 
-    __setElevation() {
+    get elevation() {
         if (this.disabled) return 'elevation-0';
         switch (this.variant) {
             case 'elevated':
@@ -174,7 +170,7 @@ export class BButton extends HTMLElement {
         }
     }
 
-    __setOutline() {
+    get outline() {
         switch (this.variant) {
             case 'outlined':
                 return 'border-outline border';
@@ -183,7 +179,7 @@ export class BButton extends HTMLElement {
         }
     }
 
-    __setContent() {
+    get content() {
         if (this.disabled) return 'text-on-surface disabled-state-content';
         switch (this.variant) {
             case 'elevated':
@@ -201,7 +197,7 @@ export class BButton extends HTMLElement {
         }
     }
 
-    __setContainer() {
+    get container() {
         if (this.disabled) return 'bg-on-surface disabled-state-container';
         switch (this.variant) {
             case 'elevated':

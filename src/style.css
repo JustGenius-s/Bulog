@@ -340,6 +340,22 @@
     text-transform: var(--md-sys-typescale-display-large-text-transform);
     text-decoration: var(--md-sys-typescale-display-large-text-decoration);
   }
+  /* Performance */
+  .contain-layout {
+    contain: layout;
+  }
+  .contain-size {
+    contain: size;
+  }
+  .contain-paint {
+    contain: paint;
+  }
+  .contain-strict {
+    contain: strict;
+  }
+  .contain-content {
+    contain: content;
+  }
 }
 
 /*! 只应该重置一小部分必须的css */
