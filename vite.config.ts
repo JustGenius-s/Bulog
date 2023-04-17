@@ -12,11 +12,6 @@ export default defineConfig({
       },
     }),
   ],
-  esbuild: {
-    jsxFactory: 'h',
-    jsxFragment: 'Fragment',
-    jsxInject: `import { h } from 'vue'`,
-  },
   build: {
     lib: {
       entry: ['./src/components/app/index.ts'],
