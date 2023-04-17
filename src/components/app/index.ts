@@ -1,26 +1,18 @@
 /** @format */
 
-import {StateLayer} from './StateLayer';
-import {BButton} from './BButton';
-import {customThemeFromColor, CustomColorOfHex, applyCustomTheme} from '../theme/theme';
-import '../css/baseline.css';
-import '../../style.css';
+import { StateLayer } from "./StateLayer";
+import { customThemeFromColor, applyCustomTheme } from "../theme/theme";
+import "../css/baseline.css";
+import "../../style.css";
 
 declare global {
-    interface HTMLElementTagNameMap {
-        'state-layer': StateLayer;
-        'b-button': BButton;
-    }
+  interface HTMLElementTagNameMap {
+    "state-layer": StateLayer;
+  }
 }
 
 function register() {
-    customElements.define('state-layer', StateLayer);
-    customElements.define('b-button', BButton);
+  customElements.define("state-layer", StateLayer);
 }
 
-export {
-    StateLayer,
-    register,
-    customThemeFromColor,
-    applyCustomTheme,
-};
+export { StateLayer, register, customThemeFromColor, applyCustomTheme };

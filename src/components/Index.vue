@@ -35,9 +35,14 @@ register();
             <p slot="icon">icon</p>
         button
     </b-button>
-    <button variant="hello"></button>
+    <button>
+        Hello
+        <state-layer contentColor="#88a0ee"></state-layer>
+    </button>
 </template>
 
 <style scoped>
-
+button {
+    position: relative;
+}
 </style>
