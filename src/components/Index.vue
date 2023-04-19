@@ -32,7 +32,6 @@ register();
         <option value="text">text</option>
     </select>
     <b-button class="my-5 mx-5" icon :variant="variant">
-            <p slot="icon">icon</p>
         button
     </b-button>
     <button>

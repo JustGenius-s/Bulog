@@ -27,7 +27,7 @@ export class StateLayer extends LitElement {
     }
   `;
 
-  @property({ type: String })
+  @property({ type: String, reflect: true })
   contentColor = "#fff";
 
   render() {
