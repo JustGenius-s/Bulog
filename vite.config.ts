@@ -7,7 +7,7 @@ export default defineConfig({
       reactivityTransform: true,
       template: {
         compilerOptions: {
-          isCustomElement: (tag) => tag.includes('b-'),
+          isCustomElement: (tag) => tag.includes('b-') || tag.includes('state-layer'),
         }
       },
     }),
