@@ -23,6 +23,8 @@ export class BButton extends LitElement {
       transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
     button.elevated {
+      color: var(--md-sys-color-on-primary);
+      background-color: var(--md-sys-color-primary);
       box-shadow: var(--md-sys-elevation-level1);
     }
     button.elevated:hover {
@@ -75,7 +77,8 @@ export class BButton extends LitElement {
 
   render() {
     const buttonClasses = {
-      elevated: this.variant || this.variant === "elevated",
+      elevated: this.variant === "elevated",
+      outlined: this.variant === "outlined",
     };
     const iconClasses = {
       icon: this.icon,
