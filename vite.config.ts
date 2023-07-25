@@ -1,5 +1,6 @@
-import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import Unocss from "unocss/vite";
+import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [
@@ -7,24 +8,27 @@ export default defineConfig({
       reactivityTransform: true,
       template: {
         compilerOptions: {
-          isCustomElement: (tag) => tag.includes('b-') || tag.includes('state-layer'),
-        }
+          isCustomElement: (tag) => tag.includes("b-"),
+        },
       },
+    }),
+    Unocss({
+      mode: 'shadow-dom'
     }),
   ],
   build: {
     lib: {
-      entry: ['./src/components/app/index.ts'],
-      name: 'MD3-Web',
-      fileName: 'md3-web',
+      entry: ["./src/components/app/index.ts"],
+      name: "MD3-Web",
+      fileName: "md3-web",
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ["vue"],
       output: {
         globals: {
-          vue: 'vue'
-        }
-      }
-    }
-  }
+          vue: "vue",
+        },
+      },
+    },
+  },
 });

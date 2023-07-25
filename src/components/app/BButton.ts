@@ -8,6 +8,7 @@ export class BButton extends LitElement {
       width: fit-content;
       cursor: pointer;
     }
+    @unocss-placeholder;
     button {
       height: 2.5rem;
       width: fit-content;
@@ -82,11 +83,11 @@ export class BButton extends LitElement {
     };
     const iconClasses = {
       icon: this.icon,
-    }
+    };
 
     return html`
       <button class="${classMap(buttonClasses)}">
-        <state-layer></state-layer>
+        <b-state-layer></b-state-layer>
         <i class="${classMap(iconClasses)}">
           <slot name="icon"></slot>
         </i>

@@ -1,9 +1,9 @@
 import { LitElement, css, html } from "lit";
 import { property } from "lit/decorators.js";
 
-export class StateLayer extends LitElement {
+export class BStateLayer extends LitElement {
   static styles = css`
-    :host(:is(state-layer)) {
+    :host(:is(b-state-layer)) {
       width: 100%;
       height: 100%;
       position: absolute;
@@ -11,34 +11,19 @@ export class StateLayer extends LitElement {
       left: 0;
       display: block;
     }
-    .state-layer {
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-    }
-    .state-layer:hover {
-      opacity: var(--md-sys-state-hover-state-layer-opacity);
-    }
-    .state-layer:active {
-      opacity: var(--md-sys-state-pressed-state-layer-opacity);
-    }
-    .state-layer:focus {
-      opacity: var(--md-sys-state-focus-state-layer-opacity);
-    }
+    @unocss-placeholder;
   `;
 
   @property({ type: String, reflect: true })
-  contentColor = "#fff";
+  contentColor = "primary";
 
   render() {
-    const colorStyle = html`<style>
-      .state-layer {
-        background-color: ${this.contentColor};
-      }
-    </style>`;
+    const colorClass = `md-bg-primary`;
     return html`
-      ${colorStyle}
-      <div class="state-layer"></div>
+      <div
+        state="hover active focus"
+        class="w-full h-full opacity-0  md-bg-primary ${colorClass}"
+      ></div>
     `;
   }
 }
