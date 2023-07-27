@@ -1,33 +1,39 @@
 import {
-    Theme,
-    Scheme,
     argbFromHex,
     hexFromArgb,
-    applyTheme,
     CorePalette,
     customColor,
-    TonalPalette,
     ColorGroup,
-} from '@material/material-color-utilities';
+} from "@material/material-color-utilities";
+
+import { Scheme, Theme, applyTheme } from "./scheme";
 
 export interface CustomColorOfHex {
-    value: string,
-    name: string,
-    blend: boolean,
+    value: string;
+    name: string;
+    blend: boolean;
 }
 
-export function customThemeFromColor(options?: {
-    primary?: string,
-    secondary?: string,
-    tertiary?: string,
-}, customColors: CustomColorOfHex[] = []): Theme {
-    const primary = argbFromHex(options?.primary ?? '#6750a4');
-    const secondary = argbFromHex(options?.secondary ?? '#958da5');
-    const tertiary = argbFromHex(options?.tertiary ?? 'b58392');
+export function customThemeFromColor(
+    options?: {
+        primary?: string;
+        secondary?: string;
+        tertiary?: string;
+        neutral?: string;
+    },
+    customColors: CustomColorOfHex[] = []
+): Theme {
+    const primary = argbFromHex(options?.primary ?? "#6750a4");
+    const secondary = argbFromHex(options?.secondary ?? "#958da5");
+    const tertiary = argbFromHex(options?.tertiary ?? "#b58392");
+    const neutral = argbFromHex(options?.neutral ?? "#939094");
 
-    const corePalette = CorePalette.contentOf(primary);
-    corePalette.a2 = TonalPalette.fromInt(secondary);
-    corePalette.a3 = TonalPalette.fromInt(tertiary);
+    const corePalette = CorePalette.fromColors({
+        primary,
+        secondary,
+        tertiary,
+        neutral,
+    });
 
     return {
         source: primary,
@@ -43,22 +49,27 @@ export function customThemeFromColor(options?: {
             neutralVariant: corePalette.n2,
             error: corePalette.error,
         },
-        customColors: customColors.map((color) => customColor(primary, {
-            value: argbFromHex(color.value),
-            name: color.name,
-            blend: color.blend,
-        })),
-    }
+        customColors: customColors.map((color) =>
+            customColor(primary, {
+                value: argbFromHex(color.value),
+                name: color.name,
+                blend: color.blend,
+            })
+        ),
+    };
 }
 
-export function applyCustomTheme(theme: Theme, options?: {
-    dark?: boolean;
-    target?: HTMLElement;
-    brightnessSuffix?: boolean;
-    paletteTones?: number[];
-}) {
+export function applyCustomTheme(
+    theme: Theme,
+    options?: {
+        dark?: boolean;
+        target?: HTMLElement;
+        brightnessSuffix?: boolean;
+        paletteTones?: number[];
+    }
+) {
     applyTheme(theme, options);
-
+    
     const target = options?.target ?? document.body;
     const isDark = options?.dark ?? false;
     const colors = theme.customColors;
@@ -68,22 +79,32 @@ export function applyCustomTheme(theme: Theme, options?: {
         const colorGroup = isDark ? c.dark : c.light;
         setCustomSchemeProperties(target, colorGroup, name);
         if (options?.brightnessSuffix) {
-            setCustomSchemeProperties(target, c.dark, name, '-dark' );
-            setCustomSchemeProperties(target, c.light, name, '-light');
+            setCustomSchemeProperties(target, c.dark, name, "-dark");
+            setCustomSchemeProperties(target, c.light, name, "-light");
         }
     }
 
-    function setCustomSchemeProperties(target: HTMLElement, color: ColorGroup, name: string, suffix: string = '') {
-        for(const [key, value] of Object.entries(toJSON(color))) {
-            const token = key.replace(/([a-z])([A-Z])/g,'$1-$2').toLocaleLowerCase();
+    function setCustomSchemeProperties(
+        target: HTMLElement,
+        color: ColorGroup,
+        name: string,
+        suffix: string = ""
+    ) {
+        for (const [key, value] of Object.entries(toJSON(color))) {
+            const token = key
+                .replace(/([a-z])([A-Z])/g, "$1-$2")
+                .toLocaleLowerCase();
             const color = hexFromArgb(value);
-            target.style.setProperty(`--md-sys-${name}-${token}${suffix}`,color);
+            target.style.setProperty(
+                `--md-sys-${name}-${token}${suffix}`,
+                color
+            );
         }
     }
 
     function toJSON(color: ColorGroup) {
         return {
-            ...color
-        }
+            ...color,
+        };
     }
 }

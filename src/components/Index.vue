@@ -4,7 +4,7 @@ import { register } from './app/index';
 import { useRouter } from 'vue-router';
 import { customThemeFromColor, applyCustomTheme } from './theme/theme';
 
-const variant = ref('');
+const variant = ref('elevated');
 const router = useRouter();
 
 const theme = customThemeFromColor({
@@ -37,8 +37,8 @@ register();
         <option value="outlined">outlined</option>
         <option value="text">text</option>
     </select>
-    <b-button class="my-5 mx-5" icon :variant="variant" @click="gotoGarden">
-        Go
+    <b-button :variant="variant">
+        go
     </b-button>
 </template>
 
