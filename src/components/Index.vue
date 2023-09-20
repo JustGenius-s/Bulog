@@ -8,9 +8,10 @@ const variant = ref('elevated');
 const router = useRouter();
 
 const theme = customThemeFromColor({
-    primary: '#006b62',
-    secondary: '#fcb170',
-    tertiary: '#928cb2',
+    primary: '#008ced',
+    secondary: '#b16800',
+    tertiary: '#948cb1',
+    neutral: '#87bdf9'
 }, [
     {
         value: '#77baff',

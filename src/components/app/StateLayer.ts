@@ -16,8 +16,7 @@ export class BStateLayer extends LitElement {
     render() {
         return html`
             <div
-                state="hover active focus"
-                class="w-full h-full opacity-0 bg-md-primary"
+                class="w-full h-full opacity-0 bg-md-primary state-hover state-focus state-active"
             ></div>
         `;
     }

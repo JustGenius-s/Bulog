@@ -1,9 +1,9 @@
 import {
-    argbFromHex,
-    hexFromArgb,
-    CorePalette,
-    customColor,
     ColorGroup,
+    CorePalette,
+    argbFromHex,
+    customColor,
+    hexFromArgb
 } from "@material/material-color-utilities";
 
 import { Scheme, Theme, applyTheme } from "./scheme";
@@ -69,7 +69,7 @@ export function applyCustomTheme(
     }
 ) {
     applyTheme(theme, options);
-    
+
     const target = options?.target ?? document.body;
     const isDark = options?.dark ?? false;
     const colors = theme.customColors;

@@ -17,7 +17,7 @@ export default defineConfig({
     // md3 label size
     [/^label-md-(\w+)$/, ([, w]) => ({ 
       "font-size": `var(--md-sys-typescale-label-${w}-size)`,
-      "line-height": `var(--md-sys-typescale-label-${w}-line-height)`,
+      "font-weight": `var(--md-sys-typescale-label-${w}-weight)`,
       "letter-space": `var(--md-sys-typescale-label-${w}-font-tracking)`,
     })],
     // md3 elevation
@@ -42,8 +42,8 @@ export default defineConfig({
     "b-button--elevated-active": "elevation-1",
     "b-button--outlined": "border border-solid border-#000",
     "b-button-shadow-icon": "m-l-4 text-center line-height-10 overflow-hidden",
-    "b-button-shadow-label": "m-l-2 m-r-5 line-height-10 case-capital",
-    "b-button-shadow-container": "absolute w-full h-full top-0 left-0 -z-1",
+    "b-button-shadow-label": "min-w-8 m-l-2 m-r-5 label-md-large line-height-10 case-capital",
+    "b-button-shadow-container": "bg-md-surface-container-low absolute w-full h-full top-0 left-0 -z-1",
   },
   presets: [presetIcons(), presetUno(), presetAttributify()],
 });
