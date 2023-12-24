@@ -14,7 +14,7 @@ export default class Stack<T> {
      * Returns the number of elements in the stack.
      * @returns The number of elements in the stack.
      */
-    length(): number {
+    size(): number {
         return this.stackSize;
     }
 
@@ -34,14 +34,22 @@ export default class Stack<T> {
      * Adds an element to the top of the stack.
      * @param element The element to add to the stack.
      */
-    push(element: T) {
+    push(element: T): void {
         this.stackDataStore[this.stackSize++] = element;
+    }
+
+    /**
+     * Returns the top element of the stack without removing it.
+     * @returns The top element of the stack, or undefined if the stack is empty.
+     */
+    top(): T | undefined {
+        return this.stackDataStore[this.stackSize - 1];
     }
 
     /**
      * Removes all elements from the stack.
      */
-    clear() {
+    clear(): void {
         this.stackSize = 0;
         this.pointer = 0;
         this.stackDataStore = [];

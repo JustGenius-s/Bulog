@@ -14,10 +14,26 @@ export class LinkedList<T> {
     length = 0;
 
     /**
+     * Returns the element at the specified position in the linked list.
+     * @param pos - The position of the element to return.
+     * @throws {LinkedListError} If the position is out of bounds.
+     */
+    get(pos: number): T {
+        if (pos < 0 || pos >= this.length) {
+            throw new LinkedListError("Index out of bounds");
+        }
+        let current = this.head;
+        for (let i = 0; i < pos; i++) {
+            current = current!.next;
+        }
+        return current!.data;
+    }
+
+    /**
      * Adds a new element to the end of the list.
      * @param {T} data Node data.
      */
-    append(data: T) {
+    append(data: T): void {
         const node = new LinkedListNode(data);
         if (!this.head) {
             this.head = node;
@@ -32,28 +48,12 @@ export class LinkedList<T> {
     }
 
     /**
-     * Returns the element at the specified position in the linked list.
-     * @param pos - The position of the element to return.
-     * @throws {LinkedListError} If the position is out of bounds.
-     */
-    get(pos: number) {
-        if (pos < 0 || pos >= this.length) {
-            throw new LinkedListError("Index out of bounds");
-        }
-        let current = this.head;
-        for (let i = 0; i < pos; i++) {
-            current = current!.next;
-        }
-        return current!.data;
-    }
-
-    /**
      * Inserts a new node with the specified data at the given position in the linked list.
      * @param pos - The position at which to insert the new node.
      * @param data - The data to be stored in the new node.
      * @throws {LinkedListError} If the position is out of bounds.
      */
-    insert(pos: number, data: T) {
+    insert(pos: number, data: T): void {
         if (pos < 0 || pos > this.length) {
             throw new LinkedListError("Index out of bounds");
         }
@@ -79,7 +79,7 @@ export class LinkedList<T> {
      * @throws {LinkedListError} If the position is out of bounds.
      * @throws {TypeError} If the list is empty.
      */
-    delete(pos: number) {
+    delete(pos: number): void {
         if (pos < 0 || pos >= this.length) {
             throw new LinkedListError("Index out of bounds");
         }
@@ -100,7 +100,7 @@ export class LinkedList<T> {
      * @param data The data to search for.
      * @returns The index of the data if found, otherwise -1.
      */
-    findIndex(data: T) {
+    findIndex(data: T): number {
         let current = this.head;
         let index = 0;
         while (current) {
@@ -117,7 +117,7 @@ export class LinkedList<T> {
      * Returns the size of the linked list.
      * @returns The number of elements in the linked list.
      */
-    size() {
+    size(): number {
         return this.length;
     }
 

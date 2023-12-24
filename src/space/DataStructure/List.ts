@@ -8,7 +8,6 @@
  * @template T The type of elements in the list.
  */
 export default class List<T> {
-    pos = 0;
     listSize = 0;
     listDataStore: T[] = [];
 
@@ -21,28 +20,11 @@ export default class List<T> {
     }
 
     /**
-     * Removes all elements from the list.
-     */
-    clear() {
-        this.listSize = 0;
-        this.pos = 0;
-        this.listDataStore = [];
-    }
-
-    /**
-     * Returns the element at the current position in the list.
-     * @returns {T} The element at the current position in the list.
-     */
-    getElement(): T {
-        return this.listDataStore[this.pos];
-    }
-
-    /**
      * Returns the index of the first occurrence of the specified element in the list, or -1 if the list does not contain the element.
      * @param {T} element The element to search for in the list.
      * @returns {number} The index of the first occurrence of the specified element in the list, or -1 if the list does not contain the element.
      */
-    find(element: T): number {
+    findIndex(element: T): number {
         return this.listDataStore.indexOf(element);
     }
 
@@ -50,8 +32,21 @@ export default class List<T> {
      * Adds a new element to the end of the list.
      * @param {T} element The element to add to the list.
      */
-    append(element: T) {
+    append(element: T): void {
         this.listDataStore[this.listSize++] = element;
+    }
+
+    /**
+     * Deletes an element at the specified position in the list.
+     * @param pos The position of the element to delete.
+     * @throws {LinkedListError} If the position is out of bounds.
+     */
+    delete(pos: number): void {
+        if (pos < 0 || pos >= this.listSize) {
+            throw new LinkedListError("Index out of bounds");
+        }
+        this.listDataStore.splice(pos, 1);
+        this.listSize--;
     }
 
     /**
@@ -59,8 +54,8 @@ export default class List<T> {
      * @param {T} element The element to remove from the list.
      * @returns {boolean} True if the element was removed successfully, false otherwise.
      */
-    remove(element: T): boolean {
-        const index = this.find(element);
+    deleteElement(element: T): boolean {
+        const index = this.findIndex(element);
         if (index > -1) {
             this.listDataStore.splice(index, 1);
             this.listSize--;
@@ -69,13 +64,28 @@ export default class List<T> {
         return false;
     }
 
+
+    /**
+     * Inserts an element at the specified position in the list.
+     * @param pos - The position at which to insert the element.
+     * @param element - The element to be inserted.
+     * @throws {ListError} If the index is out of bounds.
+     */
+    insert(pos: number, element: T): void {
+        if (pos < 0 || pos > this.listSize) {
+            throw new ListError("Index out of bounds");
+        }
+        this.listDataStore.splice(pos, 0, element);
+        this.listSize++;
+    }
+
     /**
      * Inserts a new element into the list after a specified element.
      * @param {T} element The element to insert into the list.
      * @param {T} after The element to insert the new element after.
      * @returns {boolean} True if the element was inserted successfully, false otherwise.
      */
-    insert(element: T, after: T): boolean {
+    insertAfter(element: T, after: T): boolean {
         const insertPos = this.find(after);
         if (insertPos > -1) {
             this.listDataStore.splice(insertPos + 1, 0, element);
@@ -86,63 +96,26 @@ export default class List<T> {
     }
 
     /**
-     * Sets the current position to the first element of the list.
-     */
-    font() {
-        this.pos = 0;
-    }
-
-    /**
-     * Sets the current position to the last element of the list.
-     */
-    end() {
-        this.pos = this.listSize - 1;
-    }
-
-    /**
-     * Sets the current position to the next element of the list.
-     */
-    next() {
-        if (this.pos < this.listSize) {
-            this.pos++;
-        }
-    }
-
-    /**
-     * Sets the current position to the previous element of the list.
-     */
-    prev() {
-        if (this.pos > 0) {
-            this.pos--;
-        }
-    }
-
-    /**
-     * Returns the current position in the list.
-     * @returns {number} The current position in the list.
-     */
-    currPos(): number {
-        return this.pos;
-    }
-
-    /**
-     * Sets the current position to a specified position in the list.
-     * @param {number} position The position to set the current position to.
-     * @warning Unsafe operation.
-     */
-    moveTo(position: number) {
-        if (position < 0 || position >= this.listSize) {
-            throw new Error("Invalid position");
-        }
-        this.pos = position;
-    }
-
-    /**
      * Returns true if the list contains the specified element, false otherwise.
      * @param {T} element The element to search for in the list.
      * @returns {boolean} True if the list contains the specified element, false otherwise.
      */
     contains(element: T): boolean {
         return this.listDataStore.includes(element);
+    }
+
+    /**
+     * Removes all elements from the list.
+     */
+    clear(): void {
+        this.listSize = 0;
+        this.listDataStore = [];
+    }
+}
+
+export class ListError extends Error {
+    constructor(message: string) {
+        super(message);
+        this.name = "ListError";
     }
 }
