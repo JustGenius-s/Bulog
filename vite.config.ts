@@ -12,9 +12,7 @@ export default defineConfig({
         },
       },
     }),
-    Unocss({
-      mode: 'shadow-dom'
-    }),
+    Unocss(),
   ],
   build: {
     lib: {

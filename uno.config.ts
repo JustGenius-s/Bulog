@@ -3,6 +3,7 @@ import {
   presetAttributify,
   presetIcons,
   presetUno,
+  transformerDirectives,
 } from "unocss";
 
 export default defineConfig({
@@ -34,16 +35,6 @@ export default defineConfig({
         }`,
     ],
   ],
-  shortcuts: {
-    "b-button-shadow-button":
-      "flex flex-row relative border-none rounded-full transition duration-150 ease overflow-hidden",
-    "b-button--elevated": "bg-md-surface text-md-primary elevation-1",
-    "b-button--elevated-hover": "elevation-2",
-    "b-button--elevated-active": "elevation-1",
-    "b-button--outlined": "border border-solid border-#000",
-    "b-button-shadow-icon": "m-l-4 text-center line-height-10 overflow-hidden",
-    "b-button-shadow-label": "min-w-8 m-l-2 m-r-5 label-md-large line-height-10 case-capital",
-    "b-button-shadow-container": "bg-md-surface-container-low absolute w-full h-full top-0 left-0 -z-1",
-  },
   presets: [presetIcons(), presetUno(), presetAttributify()],
+  transformers: [ transformerDirectives() ],
 });

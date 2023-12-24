@@ -35,7 +35,7 @@
   /* Label Small font size */
   --md-sys-typescale-label-small-size-value: 11px;
   --md-sys-typescale-label-small-size-unit: 2px;
-  --md-sys-typescale-label-small-size: 11px;
+  --md-sys-typescale-label-small-size: 0.9196rem;
   /* Label Small font weight */
   --md-sys-typescale-label-small-weight: var(--md-ref-typeface-weight-medium);
   /* Label Small font name */
@@ -57,7 +57,7 @@
   /* Label Medium font size */
   --md-sys-typescale-label-medium-size-value: 12px;
   --md-sys-typescale-label-medium-size-unit: 2px;
-  --md-sys-typescale-label-medium-size: 12px;
+  --md-sys-typescale-label-medium-size: 1.0032rem;
   /* Label Medium font weight */
   --md-sys-typescale-label-medium-weight: var(--md-ref-typeface-weight-medium);
   /* Label Medium font name */
@@ -78,9 +78,9 @@
   /* Label Large font size */
   --md-sys-typescale-label-large-size-value: 14px;
   --md-sys-typescale-label-large-size-unit: 2px;
-  --md-sys-typescale-label-large-size: 14px;
+  --md-sys-typescale-label-large-size: 1.1704rem;
   /* Label Large font weight */
-  --md-sys-typescale-label-large-weight: var(--md-ref-typeface-weight-medium);
+  --md-sys-typescale-label-large-weight: var(--md-ref-typeface-weight-regular);
   /* Label Large font name */
   --md-sys-typescale-label-large-font: var(--md-ref-typeface-plain);
   /* Body Small */

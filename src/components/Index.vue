@@ -38,8 +38,9 @@ register();
         <option value="outlined">outlined</option>
         <option value="text">text</option>
     </select>
-    <b-button :variant="variant">
-        go
+    <b-button :variant="variant" icon>
+        <div slot="icon" class="i-material-symbols-create-new-folder-outline text-2xl"></div>
+        elevated button
     </b-button>
 </template>
 

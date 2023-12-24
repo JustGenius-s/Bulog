@@ -10,14 +10,32 @@ export class BStateLayer extends LitElement {
             left: 0;
             display: block;
         }
-        @unocss-placeholder;
+
+        .state-layer {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            opacity: 0;
+            position: absolute;
+            background-color: var(--md-sys-color-primary);
+        }
+
+        .state-hover:hover {
+            opacity: var(--md-sys-state-hover-state-layer-opacity);
+        }
+
+        .state-focus:focus {
+            opacity: var(--md-sys-state-focus-state-layer-opacity);
+        }
+
+        .state-active:active {
+            opacity: var(--md-sys-state-active-state-layer-opacity);
+        }
     `;
 
     render() {
-        return html`
-            <div
-                class="w-full h-full opacity-0 bg-md-primary state-hover state-focus state-active"
-            ></div>
-        `;
+        return html` <div class="state-layer"></div> `;
     }
 }
