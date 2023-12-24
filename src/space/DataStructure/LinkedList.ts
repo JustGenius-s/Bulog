@@ -14,6 +14,14 @@ export class LinkedList<T> {
     length = 0;
 
     /**
+     * Returns the size of the linked list.
+     * @returns The number of elements in the linked list.
+     */
+    get size(): number {
+        return this.length;
+    }
+
+    /**
      * Returns the element at the specified position in the linked list.
      * @param pos - The position of the element to return.
      * @throws {LinkedListError} If the position is out of bounds.
@@ -112,15 +120,6 @@ export class LinkedList<T> {
         }
         return -1;
     }
-
-    /**
-     * Returns the size of the linked list.
-     * @returns The number of elements in the linked list.
-     */
-    size(): number {
-        return this.length;
-    }
-
 }
 
 /**

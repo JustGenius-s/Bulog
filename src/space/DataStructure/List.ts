@@ -15,7 +15,7 @@ export default class List<T> {
      * Returns the number of elements in the list.
      * @returns {number} The number of elements in the list.
      */
-    size(): number {
+    get size(): number {
         return this.listSize;
     }
 

@@ -14,8 +14,16 @@ export default class Stack<T> {
      * Returns the number of elements in the stack.
      * @returns The number of elements in the stack.
      */
-    size(): number {
+    get size(): number {
         return this.stackSize;
+    }
+
+    /**
+     * Adds an element to the top of the stack.
+     * @param element The element to add to the stack.
+     */
+    push(element: T): void {
+        this.stackDataStore[this.stackSize++] = element;
     }
 
     /**
@@ -28,14 +36,6 @@ export default class Stack<T> {
             this.stackSize--;
             return this.stackDataStore.pop();
         }
-    }
-
-    /**
-     * Adds an element to the top of the stack.
-     * @param element The element to add to the stack.
-     */
-    push(element: T): void {
-        this.stackDataStore[this.stackSize++] = element;
     }
 
     /**
