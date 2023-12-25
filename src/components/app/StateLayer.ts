@@ -22,15 +22,15 @@ export class BStateLayer extends LitElement {
             background-color: var(--md-sys-color-primary);
         }
 
-        .state-hover:hover {
+        .state-layer:hover {
             opacity: var(--md-sys-state-hover-state-layer-opacity);
         }
 
-        .state-focus:focus {
+        .state-layer:focus {
             opacity: var(--md-sys-state-focus-state-layer-opacity);
         }
 
-        .state-active:active {
+        .state-layer:active {
             opacity: var(--md-sys-state-active-state-layer-opacity);
         }
     `;

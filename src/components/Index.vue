@@ -36,11 +36,13 @@ register();
     <select v-model="variant">
         <option value="elevated">default</option>
         <option value="outlined">outlined</option>
+        <option value="filled">filled</option>
+        <option value="tonal">tonal</option>
         <option value="text">text</option>
     </select>
-    <b-button :variant="variant" icon>
-        <div slot="icon" class="i-material-symbols-create-new-folder-outline text-2xl"></div>
-        elevated button
+    <b-button class="m-l-10" :variant="variant" icon>
+        <div slot="icon" class="i-material-symbols-add text-2xl"></div>
+        {{ variant }}
     </b-button>
 </template>
 

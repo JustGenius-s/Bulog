@@ -5,6 +5,8 @@ import { classMap } from "lit/directives/class-map.js";
 export enum BButtonVariant {
     ELEVATED = "elevated",
     OUTLINED = "outlined",
+    FILLED = "filled",
+    TONAL = "tonal",
     TEXT = "text",
 }
 
@@ -21,11 +23,13 @@ export class BButton extends LitElement {
                 height: 2.5rem;
                 border: none;
                 display: flex;
+                padding: 0;
                 overflow: hidden;
                 position: relative;
                 transition: all 150ms ease;
                 flex-direction: row;
-                border-radius: 9999px;
+                border-radius: 1.25rem;
+                align-items: center;
             }
 
             /* elevated button */
@@ -46,6 +50,30 @@ export class BButton extends LitElement {
                 border: 1px solid #000;
             }
 
+            /* filled button */
+            button.filled {
+                color: var(--md-sys-color-on-primary);
+                background-color: var(--md-sys-color-primary);
+            }
+            button.filled:hover {
+                box-shadow: var(--md-sys-elevation-level1);
+            }
+            button.filled:active {
+                box-shadow: var(--md-sys-elevation-level0);
+            }
+
+            /* tonal button */
+            button.tonal {
+                color: var(--md-sys-color-on-secondary-container);
+                background-color: var(--md-sys-color-secondary-container);
+            }
+            button.tonal:hover {
+                box-shadow: var(--md-sys-elevation-level1);
+            }
+            button.tonal:active {
+                box-shadow: var(--md-sys-elevation-level0);
+            }
+
             /* button disabled */
             button.disabled {
                 cursor: not-allowed;
@@ -56,12 +84,14 @@ export class BButton extends LitElement {
             /* icon */
             div.icon {
                 display: flex;
-                align-items: center;
                 overflow: hidden;
-                max-width: 1.5rem;
+                max-width: 1.125rem;
+                min-width: 1.125rem;
                 text-align: center;
-                min-height: 2.5rem;
+                min-height: 100%;
                 margin-left: 1rem;
+                align-items: center;
+                justify-content: center;
             }
             div.no-icon {
                 display: none;
@@ -72,11 +102,12 @@ export class BButton extends LitElement {
 
             /* label */
             label {
+                display: flex;
                 min-width: 2rem;
-                min-height: 2.5rem;
-                line-height: 2.5rem;
+                min-height: 100%;
+                align-items: center;
                 margin-left: 0.5rem;
-                margin-right: 1.25rem;
+                margin-right: 1.5rem;
                 font-size: var(--md-sys-typescale-label-large-size);
                 font-weight: var(--md-sys-typescale-label-large-weight);
                 letter-spacing: var(
@@ -114,6 +145,8 @@ export class BButton extends LitElement {
         const buttonClasses = {
             elevated: this.variant === BButtonVariant.ELEVATED,
             outlined: this.variant === BButtonVariant.OUTLINED,
+            filled: this.variant === BButtonVariant.FILLED,
+            tonal: this.variant === BButtonVariant.TONAL,
         };
 
         const iconClasses = {
