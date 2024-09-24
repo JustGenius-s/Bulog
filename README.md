@@ -1,11 +1,13 @@
 # Buele' blog
+
 Bulog is a vue3 practice of my programming.
 Here you can see:
-- **My Leaning Space🔥**
-- **My Projects✈️**
-- **Technology Article📖**
-- **Roasts🤕** 
-- **Resources📹️**
+
+-   **My Leaning Space🔥**
+-   **My Projects✈️**
+-   **Technology Article📖**
+-   **Roasts🤕**
+-   **Resources📹️**
 
 ## Why this?
 

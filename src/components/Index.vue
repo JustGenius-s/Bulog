@@ -21,14 +21,13 @@ const theme = customThemeFromColor({
 ])
 
 function gotoGarden() {
-    router.push({ name: 'garden' });
+    alert("I am clicked.");
 }
 
 applyCustomTheme(theme, {
     dark: false,
 });
 
-console.log(theme);
 register();
 </script>
 
@@ -40,7 +39,7 @@ register();
         <option value="tonal">tonal</option>
         <option value="text">text</option>
     </select>
-    <b-button class="m-l-10" :variant="variant" icon>
+    <b-button class="m-l-10" :variant="variant" icon draggable="true">
         <div slot="icon" class="i-material-symbols-add text-2xl"></div>
         {{ variant }}
     </b-button>
