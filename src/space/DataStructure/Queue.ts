@@ -1,6 +1,11 @@
-// Queue:
-// 队列是一种先进先出（FIFO）的数据结构，可以用数组实现，也可以用链表实现。
+/**
+ * @file Queue.ts - A collection of Queue for use in various algorithms.
+ */
 
+/** 
+ * A simple queue data structure.
+ * @template T The type of the elements in the queue.
+ */
 export class Queue<T> {
     queueSize = 0;
     queueDataStore: T[] = [];

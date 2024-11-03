@@ -1,7 +1,6 @@
-// List:
-// 列表是一组有序的数据。每个列表中的数据项称为元素。在 JavaScript 中，列表中的元素可以是任意数据类型。列表中可以保存多少元素并没有事先限定，实际使用时元素的数量受到程序内存的限制。
-// 列表中的元素个数成为列表的长度。在计算机科学中，列表和数组是两个不同的概念。在其他语言中，列表和数组之间存在着明确的区别。但是在 JavaScript 中，数组就是列表。
-// 为了弥补 JavaScript 中数组的不足，我们需要创建一个列表类来实现列表抽象数据类型。在下面的代码中，我们将使用一个数组来存储列表中的元素。
+/**
+ * @file List.ts - A collection of List for use in various algorithms.
+ */
 
 /**
  * A class representing a list data structure.
@@ -43,7 +42,7 @@ export default class List<T> {
      */
     delete(pos: number): void {
         if (pos < 0 || pos >= this.listSize) {
-            throw new LinkedListError("Index out of bounds");
+            throw new ListError("Index out of bounds");
         }
         this.listDataStore.splice(pos, 1);
         this.listSize--;
@@ -86,7 +85,7 @@ export default class List<T> {
      * @returns {boolean} True if the element was inserted successfully, false otherwise.
      */
     insertAfter(element: T, after: T): boolean {
-        const insertPos = this.find(after);
+        const insertPos = this.findIndex(after);
         if (insertPos > -1) {
             this.listDataStore.splice(insertPos + 1, 0, element);
             this.listSize++;

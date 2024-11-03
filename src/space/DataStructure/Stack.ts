@@ -1,5 +1,6 @@
-// Stack:
-// 栈是一种遵从后进先出（LIFO）原则的有序集合。在栈中，新添加的或待删除的元素都保存在栈的末尾，称作栈顶，另一端就叫栈底。
+/**
+ * @file Stack.ts - A collection of Stack for use in various algorithms.
+ */
 
 /**
  * A stack data structure implementation.
