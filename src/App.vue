@@ -1,18 +1,23 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div id="root">
-    <router-view></router-view>
-  </div>
+    <div id="root">
+        <router-view></router-view>
+    </div>
 </template>
 
 <style scoped>
 #root {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+</style>
+
+<style>
+:root {
+  --animate-duration: 800ms;
 }
 </style>

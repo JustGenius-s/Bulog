@@ -34,9 +34,9 @@ export default defineConfig({
             /^state-(\w+)$/,
             ([, d], {}) =>
                 `.state-${d}:${d} {
-            opacity: var(--md-sys-state-${d}-state-layer-opacity);
-        }`,
-        ],
+                    opacity: var(--md-sys-state-${d}-state-layer-opacity);
+                }`,
+        ]
     ],
     presets: [presetIcons(), presetUno(), presetAttributify()],
     transformers: [transformerDirectives()],
