@@ -1,6 +1,7 @@
 import Index from "./components/Index.vue";
 
 import Home from "./pages/Home.vue";
+import Post from "./pages/Post.vue";
 
 // VueRouter table
 export const routes = [
@@ -13,5 +14,10 @@ export const routes = [
         name: 'home',
         path: '/',
         component: Home,
+    },
+    {
+        name: 'post',
+        path: '/post',
+        component: Post,
     },
 ]
